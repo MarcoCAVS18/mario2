@@ -9,7 +9,7 @@ interface GameStatsProps {
   gameWon: boolean;
 }
 
-const GameStats: React.FC<GameStatsProps> = ({ moves, matches, gameWon }) => {
+const GameStats: React.FC<GameStatsProps> = ({ moves, matches }) => {
   return (
     <Box 
       sx={{ 
