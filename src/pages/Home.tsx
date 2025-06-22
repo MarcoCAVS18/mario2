@@ -53,7 +53,7 @@ const Home: React.FC = () => {
               src={ninjagoImage}
               alt="Ninjago"
               style={{
-                maxWidth: '300px',
+                maxWidth: '100px',
                 height: 'auto',
                 objectFit: 'contain',
                 filter: 'drop-shadow(1px 1px 4px rgba(0,0,0,0.4))'

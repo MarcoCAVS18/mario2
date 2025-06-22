@@ -7,10 +7,16 @@ import { useNavigate } from 'react-router-dom';
 interface CongratulationsModalProps {
   open: boolean;
   onClose: () => void;
+  onPlayAgain: () => void;
   moves: number;
 }
 
-const CongratulationsModal: React.FC<CongratulationsModalProps> = ({ open, onClose, moves }) => {
+const CongratulationsModal: React.FC<CongratulationsModalProps> = ({ 
+  open, 
+  onClose, 
+  onPlayAgain, 
+  moves 
+}) => {
   const navigate = useNavigate();
 
   const ninjaButtonStyles = {
@@ -62,8 +68,12 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({ open, onClo
   };
 
   const handleGoToInvitations = () => {
-    onClose(); 
+    onClose(); // Resetear el juego al estado inicial
     navigate('/invitacion');
+  };
+
+  const handlePlayAgain = () => {
+    onPlayAgain(); // Reiniciar inmediatamente con nuevas cartas mezcladas
   };
 
   return (
@@ -138,7 +148,7 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({ open, onClo
         >
           {/* Botón Jugar de Nuevo */}
           <Box
-            onClick={onClose}
+            onClick={handlePlayAgain}
             sx={{
               ...ninjaButtonStyles,
               width: { xs: '100%', sm: 'auto' },

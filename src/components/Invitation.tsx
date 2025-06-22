@@ -236,7 +236,7 @@ const Invitation: React.FC = () => {
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 350 }}>
             <Box onClick={handleWhatsAppClick} sx={ninjaButtonStyles}>
               <WhatsAppIcon sx={{ mr: 1 }} />
-              Confirmar por WhatsApp
+              Confirma!
             </Box>
             
             <Box onClick={handleLocationClick} sx={ninjaButtonStyles}>

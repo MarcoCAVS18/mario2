@@ -11,7 +11,7 @@ import AnimatedBox from '../AnimatedBox';
 
 const JuegaComoKai: React.FC = () => {
   const navigate = useNavigate();
-  const { cards, moves, matches, gameWon, handleCardClick, resetGame, gameStarted } = useMemoryGame();
+  const { cards, moves, matches, gameWon, handleCardClick, resetGame, restartGame, gameStarted } = useMemoryGame();
 
   const ninjaButtonStyles = {
     py: 2,
@@ -54,37 +54,39 @@ const JuegaComoKai: React.FC = () => {
       justifyContent: 'center',
       position: 'relative',
       overflow: 'hidden',
-      pt: { xs: 8, sm: 6 }, 
+      pt: { xs: 8, sm: 6 }, // Padding top para dar espacio al botón volver
     }}>
       {/* Botón para volver - Fijo en esquina superior izquierda */}
-            <Box
-              sx={{
-                position: 'fixed',
-                top: 20,
-                left: 20,
-                zIndex: 1000
-              }}
-            >
-              <Box
-                onClick={() => navigate('/')}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  cursor: 'pointer',
-                  color: '#FFE600',
-                  fontFamily: '"ABeeZee", sans-serif',
-                  fontSize: '1rem',
-                  fontWeight: 700,
-                  '&:hover': {
-                    color: '#CC2A00'
-                  },
-                  transition: 'color 0.3s ease'
-                }}
-              >
-                <ArrowBackIcon sx={{ mr: 1 }} />
-                VOLVER
-              </Box>
-            </Box>
+      <AnimatedBox animation="slideInFromLeft" delay={0.1}>
+        <Box
+          sx={{
+            position: 'fixed',
+            top: { xs: 20, sm: 25 },
+            left: { xs: 15, sm: 25 },
+            zIndex: 1000
+          }}
+        >
+          <Box
+            onClick={() => navigate('/')}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
+              color: '#FFE600',
+              fontFamily: '"ABeeZee", sans-serif',
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+              fontWeight: 700,
+              '&:hover': {
+                color: '#CC2A00'
+              },
+              transition: 'color 0.3s ease'
+            }}
+          >
+            <ArrowBackIcon sx={{ mr: 1, fontSize: { xs: '1.2rem', sm: '1.5rem' } }} />
+            VOLVER
+          </Box>
+        </Box>
+      </AnimatedBox>
 
       {/* Contenedor principal centrado */}
       <Box
@@ -235,7 +237,7 @@ const JuegaComoKai: React.FC = () => {
         {/* Modal de felicitaciones */}
         <CongratulationsModal 
           open={gameWon} 
-          onClose={resetGame} 
+          onClose={restartGame} 
           moves={moves} 
         />
       </Box>
