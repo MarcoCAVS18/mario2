@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Fab, Box, Tooltip } from '@mui/material';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp'; 
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 interface WhatsAppButtonProps {
   phoneNumber?: string;
@@ -10,12 +10,12 @@ interface WhatsAppButtonProps {
 }
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
-  phoneNumber = '5491112345678', 
-  message = 'Hola, estoy contactando desde la invitación ninja de Kai. ¡Tengo una pregunta!',
+  phoneNumber = '5493413820831',
+  message = 'Hola amigo, claro que voy. ¡Modo Ninja activado!',
 }) => {
   const handleClick = () => {
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/<span class="math-inline">\{phoneNumber\}?text\=</span>{encodedMessage}`, '_blank');
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
   };
 
   return (
@@ -27,13 +27,13 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
         zIndex: 1000,
       }}
     >
-      <Tooltip title="Contactar por WhatsApp" arrow>
+      <Tooltip title="Confirma!" arrow>
         <Fab
           color="success"
           aria-label="whatsapp"
           onClick={handleClick}
           sx={{
-            backgroundColor: '#25D366', 
+            backgroundColor: '#25D366',
             '&:hover': {
               backgroundColor: '#1DA851',
             },
