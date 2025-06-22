@@ -23,7 +23,8 @@ const Card: React.FC<CardProps> = ({ card, onClick, gameStarted }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#FFE600'
+          color: '#FFE600',
+          userSelect: 'none'
         }}
       >
         🥷
@@ -52,6 +53,10 @@ const Card: React.FC<CardProps> = ({ card, onClick, gameStarted }) => {
         transition: 'transform 0.6s ease-in-out',
         transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
         backgroundColor: 'transparent',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
         '&:hover': {
           transform: (!isMatched && !isFlipped && gameStarted) 
             ? 'rotateY(0deg) scale(1.05)' 
@@ -72,6 +77,7 @@ const Card: React.FC<CardProps> = ({ card, onClick, gameStarted }) => {
           overflow: 'hidden',
           border: `2px solid #CC2A00`,
           boxShadow: '0 0 6px rgba(204, 42, 0, 0.3)',
+          userSelect: 'none'
         }}
       >
         <img
@@ -80,8 +86,14 @@ const Card: React.FC<CardProps> = ({ card, onClick, gameStarted }) => {
           style={{ 
             width: '100%', 
             height: '100%', 
-            objectFit: 'cover'
+            objectFit: 'cover',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            MozUserSelect: 'none',
+            msUserSelect: 'none',
+            WebkitTouchCallout: 'none'
           }}
+          draggable={false}
         />
       </Box>
 
@@ -98,6 +110,7 @@ const Card: React.FC<CardProps> = ({ card, onClick, gameStarted }) => {
           border: isMatched ? '2px solid #FFE600' : '2px solid #4CAF50',
           boxShadow: isMatched ? '0 0 8px #FFE600' : '0 0 6px rgba(76, 175, 80, 0.3)',
           backgroundColor: isMatched ? '#4CAF50' : '#111',
+          userSelect: 'none'
         }}
       >
         <img
@@ -106,8 +119,14 @@ const Card: React.FC<CardProps> = ({ card, onClick, gameStarted }) => {
           style={{ 
             width: '100%', 
             height: '100%', 
-            objectFit: 'cover'
+            objectFit: 'cover',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            MozUserSelect: 'none',
+            msUserSelect: 'none',
+            WebkitTouchCallout: 'none'
           }}
+          draggable={false}
         />
       </Box>
     </Paper>

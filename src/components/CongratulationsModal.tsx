@@ -38,6 +38,7 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '60px',
+    userSelect: 'none',
     '&:hover': {
       backgroundColor: '#CC2A00',
       color: '#111',
@@ -68,12 +69,12 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({
   };
 
   const handleGoToInvitations = () => {
-    onClose(); // Resetear el juego al estado inicial
+    onClose();
     navigate('/invitacion');
   };
 
   const handlePlayAgain = () => {
-    onPlayAgain(); // Reiniciar inmediatamente con nuevas cartas mezcladas
+    onPlayAgain();
   };
 
   return (
@@ -87,11 +88,16 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({
           backgroundColor: 'rgba(0, 0, 0, 0.9)',
           border: '3px solid #FFE600',
           borderRadius: '12px',
-          boxShadow: '0 0 20px #FFE600'
+          boxShadow: '0 0 20px #FFE600',
+          userSelect: 'none'
         }
       }}
     >
-      <DialogContent sx={{ textAlign: 'center', p: 4 }}>
+      <DialogContent sx={{ 
+        textAlign: 'center', 
+        p: 4,
+        userSelect: 'none'
+      }}>
         <Typography
           variant="h3"
           sx={{
@@ -102,7 +108,8 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({
             fontSize: { xs: '2rem', sm: '2.5rem' },
             textShadow: '3px 3px 0 #CC2A00, 6px 6px 0 #000',
             lineHeight: 1,
-            letterSpacing: 2
+            letterSpacing: 2,
+            userSelect: 'none'
           }}
         >
           ¡FELICITACIONES!
@@ -117,7 +124,8 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({
             mb: 3,
             fontSize: { xs: '1.2rem', sm: '1.5rem' },
             textShadow: '2px 2px 0 #000',
-            letterSpacing: 1
+            letterSpacing: 1,
+            userSelect: 'none'
           }}
         >
           ¡Misión ninja completada!
@@ -130,13 +138,13 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({
             color: '#CC2A00',
             mb: 4,
             fontSize: '1.3rem',
-            textShadow: '1px 1px 0 #000'
+            textShadow: '1px 1px 0 #000',
+            userSelect: 'none'
           }}
         >
           Completaste el juego en {moves} movimientos
         </Typography>
 
-        {/* Contenedor para los botones */}
         <Box 
           sx={{ 
             display: 'flex', 
@@ -146,7 +154,6 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({
             alignItems: 'center'
           }}
         >
-          {/* Botón Jugar de Nuevo */}
           <Box
             onClick={handlePlayAgain}
             sx={{
@@ -158,7 +165,6 @@ const CongratulationsModal: React.FC<CongratulationsModalProps> = ({
             ¡JUGAR DE NUEVO!
           </Box>
 
-          {/* Botón Crear Invitación */}
           <Box
             onClick={handleGoToInvitations}
             sx={{

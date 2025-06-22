@@ -27,6 +27,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none',
         '&::before': {
           content: '""',
           position: 'absolute',
@@ -40,7 +44,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         }
       }}
     >
-      <Box sx={{ position: 'relative', zIndex: 1, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+      <Box sx={{ 
+        position: 'relative', 
+        zIndex: 1, 
+        width: '100%', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        userSelect: 'none'
+      }}>
         {children}
       </Box>
     </Box>
