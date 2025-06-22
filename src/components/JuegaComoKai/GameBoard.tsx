@@ -1,0 +1,56 @@
+// src/components/JuegaComoKai/GameBoard.tsx
+
+import React from 'react';
+import { Box } from '@mui/material';
+import Card from './Card';
+
+interface GameBoardProps {
+  cards?: any[];
+  handleCardClick?: (index: number) => void;
+  gameStarted?: boolean;
+}
+
+const GameBoard: React.FC<GameBoardProps> = ({ 
+  cards = [], 
+  handleCardClick = () => {}, 
+  gameStarted = false 
+}) => {
+  if (!cards || cards.length === 0) {
+    return (
+      <Box sx={{ color: '#FFE600', textAlign: 'center', p: 2 }}>
+        Preparando misión ninja...
+      </Box>
+    );
+  }
+
+  return (
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: { 
+          xs: 'repeat(4, 1fr)', 
+          sm: 'repeat(6, 1fr)', 
+          md: 'repeat(8, 1fr)', 
+          lg: 'repeat(8, 1fr)' 
+        },
+        gap: { xs: 1.2, sm: 1.5, md: 2, lg: 2.5 },
+        justifyItems: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        width: 'fit-content', 
+        margin: '0 auto'
+      }}
+    >
+      {cards.map((card, index) => (
+        <Card
+          key={`card-${index}`}
+          card={card}
+          onClick={() => handleCardClick(index)}
+          gameStarted={gameStarted}
+        />
+      ))}
+    </Box>
+  );
+};
+
+export default GameBoard;

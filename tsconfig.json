@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",             /* Especifica el destino de ECMAScript. ES2020 es común para proyectos modernos. */
+    "useDefineForClassFields": true, /* Habilita o deshabilita el uso de define en campos de clase. */
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], /* Bibliotecas de entorno disponibles para el código. */
+    "module": "ESNext",             /* Especifica el sistema de módulos de destino. */
+    "skipLibCheck": true,           /* Omite la comprobación de tipos de todos los archivos .d.ts adquiridos. */
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",  /* Estrategia de resolución de módulos. "bundler" es buena para Vite. */
+    "allowImportingTsExtensions": true, /* Permite la importación de archivos TS con extensiones explícitas. */
+    "resolveJsonModule": true,      /* Incluye módulos con extensión .json. */
+    "isolatedModules": true,        /* Asegura que cada archivo pueda compilarse de forma segura de forma aislada. */
+    "noEmit": true,                 /* No emite archivos de salida de JavaScript. */
+    "jsx": "react-jsx",             /* Soporte JSX para React. */
+
+    /* Linting */
+    "strict": true,                 /* Habilita todas las opciones de comprobación de tipos estrictas. */
+    "noUnusedLocals": true,         /* Informa errores sobre variables locales no utilizadas. */
+    "noUnusedParameters": true,     /* Informa errores sobre parámetros no utilizados. */
+    "noFallthroughCasesInSwitch": true, /* Informa errores para los casos switch que no tienen break. */
+    "baseUrl": ".",                 /* Directorio base para la resolución de módulos no relativos. */
+    "paths": {                      /* Mapeo de rutas para imports, si estás usando `@/`. */
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src", "vite.config.ts"], /* Archivos a incluir en la compilación. */
+
+}
