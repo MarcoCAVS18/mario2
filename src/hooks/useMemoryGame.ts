@@ -46,6 +46,20 @@ export const useMemoryGame = () => {
     setFlippedCards([]);
   };
 
+  const restartGame = () => {
+    // Resetear todo el estado primero
+    setMoves(0);
+    setMatches(0);
+    setGameWon(false);
+    setFlippedCards([]);
+    
+    // Crear y mezclar nuevas cartas inmediatamente
+    const initialCards = createInitialCards();
+    const shuffledCards = shuffleCards(initialCards);
+    setCards(shuffledCards);
+    setGameStarted(true);
+  };
+
   const handleCardClick = (index: number) => {
     if (!gameStarted && index === -1) {
       initializeGame();
@@ -105,6 +119,7 @@ export const useMemoryGame = () => {
     gameWon,
     gameStarted,
     handleCardClick,
-    resetGame
+    resetGame,
+    restartGame
   };
 };

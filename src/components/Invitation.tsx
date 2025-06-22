@@ -17,7 +17,7 @@ const Invitation: React.FC = () => {
   };
 
   const handleLocationClick = () => {
-    window.open('https://maps.app.goo.gl/nqYVGYK6yvbphavb7', '_blank');
+    window.open('https://maps.app.goo.gl/bxLdoeRwkaxZyEF57', '_blank');
   };
 
   const ninjaButtonStyles = {
@@ -200,7 +200,7 @@ const Invitation: React.FC = () => {
                 letterSpacing: 1
               }}
             >
-              SÁBADO, 15 DE JUNIO
+              JUEVES, 17 DE JULIO
             </Typography>
 
             <Typography
@@ -214,7 +214,7 @@ const Invitation: React.FC = () => {
                 letterSpacing: 1
               }}
             >
-              A LAS 3:00 PM
+              A LAS 17:00 HS.
             </Typography>
 
             <Typography
@@ -228,7 +228,7 @@ const Invitation: React.FC = () => {
                 letterSpacing: 1
               }}
             >
-              EN MI CASA
+              EN MI CASA, LOS TILOS 1795, ZAVALLA
             </Typography>
           </Box>
 
