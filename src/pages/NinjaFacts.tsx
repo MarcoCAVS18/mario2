@@ -27,9 +27,9 @@ const NinjaFacts: React.FC = () => {
   };
 
   const ninjaButtonStyles = {
-    py: 2.5,
-    px: 4,
-    fontSize: '1.1rem',
+    py: 2,
+    px: 3.5,
+    fontSize: '1rem',
     fontFamily: '"ABeeZee", sans-serif',
     textTransform: 'none',
     borderRadius: 4,
@@ -44,7 +44,7 @@ const NinjaFacts: React.FC = () => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: '60px',
+    minHeight: '50px',
     '&:hover': {
       backgroundColor: '#CC2A00',
       color: '#111',
@@ -62,10 +62,10 @@ const NinjaFacts: React.FC = () => {
     backgroundColor: 'transparent',
     border: '2px solid #FFE600',
     boxShadow: '0 0 8px rgba(255, 230, 0, 0.3)',
-    minHeight: '50px',
+    minHeight: '45px',
     py: 1.5,
     px: 3,
-    fontSize: '1rem',
+    fontSize: '0.95rem',
     '&:hover': {
       backgroundColor: '#FFE600',
       color: '#111',
@@ -76,16 +76,16 @@ const NinjaFacts: React.FC = () => {
 
   return (
     <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, py: 4 }}>
-      {/* Botón para volver */}
-      <AnimatedBox animation="slideInFromLeft" delay={0.1}>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 20,
-            left: 20,
-            zIndex: 10
-          }}
-        >
+      {/* Botón para volver - Fijo en esquina superior izquierda */}
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 20,
+          left: 20,
+          zIndex: 1000
+        }}
+      >
+        <AnimatedBox animation="slideInFromLeft" delay={0.1}>
           <Box
             onClick={() => navigate('/')}
             sx={{
@@ -105,8 +105,8 @@ const NinjaFacts: React.FC = () => {
             <ArrowBackIcon sx={{ mr: 1 }} />
             VOLVER
           </Box>
-        </Box>
-      </AnimatedBox>
+        </AnimatedBox>
+      </Box>
 
       <Box
         sx={{
@@ -244,21 +244,21 @@ const NinjaFacts: React.FC = () => {
             alignItems: 'center'
           }}
         >
-          {/* Botón Siguiente Curiosidad */}
+          {/* Botón Siguiente - Más pequeño y texto simplificado */}
           <AnimatedBox animation="pulse" delay={0.5}>
             <Box
               onClick={showNextFact}
               sx={{
                 ...ninjaButtonStyles,
-                fontSize: '1.2rem',
-                px: 5,
-                py: 3,
-                minHeight: '70px',
+                fontSize: '1.1rem',
+                px: 4,
+                py: 2.5,
+                minHeight: '55px',
                 gap: 1
               }}
             >
-              <NavigateNextIcon sx={{ fontSize: '1.5rem' }} />
-              SIGUIENTE CURIOSIDAD
+              <NavigateNextIcon sx={{ fontSize: '1.3rem' }} />
+              SIGUIENTE
             </Box>
           </AnimatedBox>
 
@@ -268,9 +268,9 @@ const NinjaFacts: React.FC = () => {
               onClick={() => navigate('/')}
               sx={{
                 ...backButtonStyles,
-                fontSize: '1.1rem',
-                px: 4,
-                minHeight: '60px'
+                fontSize: '1rem',
+                px: 3.5,
+                minHeight: '50px'
               }}
             >
               VOLVER AL INICIO

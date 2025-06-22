@@ -63,7 +63,6 @@ const Home: React.FC = () => {
         </AnimatedBox>
 
         {/* Logo principal */}
-        <AnimatedBox animation="bounce" delay={0.4}>
           <Box
             sx={{
               display: 'flex',
@@ -83,13 +82,12 @@ const Home: React.FC = () => {
               }}
             />
           </Box>
-        </AnimatedBox>
       </Box>
 
       <AnimatedBox animation="slideInFromLeft" delay={0.4}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <AnimatedBox animation="slideInFromRight" delay={0.8}>
+              <AnimatedBox animation="slideInFromLeft" delay={0.4}>
                 <Box
                   onClick={() => navigate('/invitacion')}
                   sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', ...ninjaButtonStyles }}
@@ -99,7 +97,7 @@ const Home: React.FC = () => {
               </AnimatedBox>
             </Grid>
             <Grid item xs={12}>
-              <AnimatedBox animation="slideInFromLeft" delay={0.4}>
+              <AnimatedBox animation="slideInFromLeft" delay={0.6}>
                 <Box
                   onClick={() => navigate('/juega')}
                   sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', ...ninjaButtonStyles }}
@@ -109,7 +107,7 @@ const Home: React.FC = () => {
               </AnimatedBox>
             </Grid>
             <Grid item xs={12}>
-              <AnimatedBox animation="slideInFromLeft" delay={0.4}>
+              <AnimatedBox animation="slideInFromLeft" delay={0.8}>
                 <Box
                   onClick={() => navigate('/curiosidades-ninja')}
                   sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', ...ninjaButtonStyles }}

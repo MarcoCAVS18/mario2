@@ -53,13 +53,13 @@ const Invitation: React.FC = () => {
 
   return (
     <Box sx={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Botón para volver */}
+      {/* Botón para volver - Fijo en esquina superior izquierda */}
       <Box
         sx={{
-          position: 'absolute',
+          position: 'fixed',
           top: 20,
           left: 20,
-          zIndex: 10
+          zIndex: 1000
         }}
       >
         <Box

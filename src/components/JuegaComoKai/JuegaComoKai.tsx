@@ -14,9 +14,9 @@ const JuegaComoKai: React.FC = () => {
   const { cards, moves, matches, gameWon, handleCardClick, resetGame, gameStarted } = useMemoryGame();
 
   const ninjaButtonStyles = {
-    py: 2.5,
-    px: 4,
-    fontSize: '1.1rem',
+    py: 2,
+    px: 3.5,
+    fontSize: '1rem',
     fontFamily: '"ABeeZee", sans-serif',
     textTransform: 'none',
     borderRadius: 4,
@@ -31,7 +31,7 @@ const JuegaComoKai: React.FC = () => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: '60px',
+    minHeight: '50px',
     '&:hover': {
       backgroundColor: '#CC2A00',
       color: '#111',
@@ -53,39 +53,38 @@ const JuegaComoKai: React.FC = () => {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      pt: { xs: 8, sm: 6 }, // Padding top para dar espacio al botón volver
     }}>
-      {/* Botón para volver */}
-      <AnimatedBox animation="slideInFromLeft" delay={0.1}>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: { xs: 15, sm: 25 },
-            left: { xs: 15, sm: 25 },
-            zIndex: 10
-          }}
-        >
-          <Box
-            onClick={() => navigate('/')}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              cursor: 'pointer',
-              color: '#FFE600',
-              fontFamily: '"ABeeZee", sans-serif',
-              fontSize: { xs: '0.9rem', sm: '1rem' },
-              fontWeight: 700,
-              '&:hover': {
-                color: '#CC2A00'
-              },
-              transition: 'color 0.3s ease'
-            }}
-          >
-            <ArrowBackIcon sx={{ mr: 1, fontSize: { xs: '1.2rem', sm: '1.5rem' } }} />
-            VOLVER
-          </Box>
-        </Box>
-      </AnimatedBox>
+      {/* Botón para volver - Fijo en esquina superior izquierda */}
+            <Box
+              sx={{
+                position: 'fixed',
+                top: 20,
+                left: 20,
+                zIndex: 1000
+              }}
+            >
+              <Box
+                onClick={() => navigate('/')}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  cursor: 'pointer',
+                  color: '#FFE600',
+                  fontFamily: '"ABeeZee", sans-serif',
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  '&:hover': {
+                    color: '#CC2A00'
+                  },
+                  transition: 'color 0.3s ease'
+                }}
+              >
+                <ArrowBackIcon sx={{ mr: 1 }} />
+                VOLVER
+              </Box>
+            </Box>
 
       {/* Contenedor principal centrado */}
       <Box
@@ -99,66 +98,72 @@ const JuegaComoKai: React.FC = () => {
           px: { xs: 1, sm: 2 }
         }}
       >
-        {/* Título principal */}
-        <Typography
-          variant="h2"
-          sx={{
-            fontFamily: '"ABeeZee", sans-serif',
-            fontWeight: 900,
-            color: '#FFE600',
-            mb: gameStarted ? 1 : 2,
-            fontSize: { 
-              xs: gameStarted ? '1.8rem' : '2.5rem', 
-              sm: gameStarted ? '2.2rem' : '3.5rem', 
-              md: gameStarted ? '2.5rem' : '4.5rem' 
-            },
-            textShadow: '4px 4px 0 #CC2A00, 8px 8px 0 #000',
-            lineHeight: 0.9,
-            letterSpacing: { xs: 1, sm: 2, md: 3 },
-            textAlign: 'center'
-          }}
-        >
-          JUEGA COMO KAI
-        </Typography>
-
-        {/* Subtítulo - solo cuando no está jugando */}
-        {!gameStarted && (
+        {/* Título principal - Reducido cuando está jugando */}
+        <AnimatedBox animation="fadeInDown" delay={0.3}>
           <Typography
-            variant="h5"
+            variant="h2"
             sx={{
               fontFamily: '"ABeeZee", sans-serif',
-              fontWeight: 700,
-              color: '#fff',
-              mb: 4,
-              fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
-              textShadow: '2px 2px 0 #000',
-              letterSpacing: 1,
+              fontWeight: 900,
+              color: '#FFE600',
+              mb: gameStarted ? 1 : 2,
+              fontSize: { 
+                xs: gameStarted ? '1.6rem' : '2.2rem', 
+                sm: gameStarted ? '2rem' : '3rem', 
+                md: gameStarted ? '2.3rem' : '4rem' 
+              },
+              textShadow: '4px 4px 0 #CC2A00, 8px 8px 0 #000',
+              lineHeight: 0.9,
+              letterSpacing: { xs: 1, sm: 2, md: 3 },
               textAlign: 'center'
             }}
           >
-            ¡Encuentra los pares de cartas ninja!
+            JUEGA COMO KAI
           </Typography>
+        </AnimatedBox>
+
+        {/* Subtítulo - solo cuando no está jugando */}
+        {!gameStarted && (
+          <AnimatedBox animation="fadeInUp" delay={0.5}>
+            <Typography
+              variant="h5"
+              sx={{
+                fontFamily: '"ABeeZee", sans-serif',
+                fontWeight: 700,
+                color: '#fff',
+                mb: 4,
+                fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
+                textShadow: '2px 2px 0 #000',
+                letterSpacing: 1,
+                textAlign: 'center'
+              }}
+            >
+              ¡Encuentra los pares de cartas ninja!
+            </Typography>
+          </AnimatedBox>
         )}
 
-        {/* Botón de inicio */}
+        {/* Botón de inicio - Más pequeño */}
         {!gameStarted && (
-          <Box
-            onClick={() => handleCardClick(-1)}
-            sx={{
-              ...ninjaButtonStyles,
-              fontSize: '1.3rem',
-              px: 6,
-              py: 3,
-              minHeight: '80px'
-            }}
-          >
-            ¡COMENZAR MISIÓN!
-          </Box>
+          <AnimatedBox animation="pulse" delay={0.7}>
+            <Box
+              onClick={() => handleCardClick(-1)}
+              sx={{
+                ...ninjaButtonStyles,
+                fontSize: '1.1rem',
+                px: 4,
+                py: 2.5,
+                minHeight: '60px'
+              }}
+            >
+              ¡COMENZAR MISIÓN!
+            </Box>
+          </AnimatedBox>
         )}
 
         {/* Tablero de juego */}
         {gameStarted && (
-          <>
+          <AnimatedBox animation="fadeInUp" delay={0.2}>
             <GameBoard 
               cards={cards} 
               handleCardClick={handleCardClick} 
@@ -224,7 +229,7 @@ const JuegaComoKai: React.FC = () => {
                 </Typography>
               </Box>
             </Box>
-          </>
+          </AnimatedBox>
         )}
 
         {/* Modal de felicitaciones */}

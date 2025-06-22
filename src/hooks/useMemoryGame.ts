@@ -1,35 +1,11 @@
 // src/hooks/useMemoryGame.ts
 
 import { useState } from 'react';
-import card1 from '../assets/images/cards/card1.png';
-
-export interface CardData {
-  id: string;
-  image: string;
-  matched: boolean;
-  flipped: boolean;
-}
+import { initialCardPairs, CardData } from '../data/cardPairs';
 
 const createInitialCards = (): CardData[] => {
-  const cards: CardData[] = [];
-  
-  // 12 pares (24 cartas total)
-  for (let i = 1; i <= 12; i++) {
-    cards.push({
-      id: `pair-${i}-a`,
-      image: card1, 
-      matched: false,
-      flipped: false
-    });
-    cards.push({
-      id: `pair-${i}-b`, 
-      image: card1,
-      matched: false,
-      flipped: false
-    });
-  }
-  
-  return cards;
+  // Usar las cartas del archivo de datos en lugar de generar manualmente
+  return [...initialCardPairs];
 };
 
 export const useMemoryGame = () => {
@@ -42,6 +18,7 @@ export const useMemoryGame = () => {
 
   const shuffleCards = (array: CardData[]): CardData[] => {
     const shuffled = [...array];
+    // Algoritmo Fisher-Yates para mezclar aleatoriamente
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -51,6 +28,7 @@ export const useMemoryGame = () => {
 
   const initializeGame = () => {
     const initialCards = createInitialCards();
+    // IMPORTANTE: Siempre mezclar las cartas para posiciones aleatorias
     const shuffledCards = shuffleCards(initialCards);
     setCards(shuffledCards);
     setMoves(0);
@@ -93,6 +71,7 @@ export const useMemoryGame = () => {
       const firstCard = newCards[firstIndex];
       const secondCard = newCards[secondIndex];
 
+      // Comparar las imágenes para ver si son el mismo par
       if (firstCard.image === secondCard.image) {
         setTimeout(() => {
           const matchedCards = [...newCards];
@@ -102,6 +81,7 @@ export const useMemoryGame = () => {
           setMatches(prev => prev + 1);
           setFlippedCards([]);
 
+          // Verificar si el juego está ganado
           const totalMatches = matchedCards.filter(card => card.matched).length;
           if (totalMatches === matchedCards.length) {
             setGameWon(true);
