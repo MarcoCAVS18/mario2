@@ -234,10 +234,11 @@ const JuegaComoKai: React.FC = () => {
           </AnimatedBox>
         )}
 
-        {/* Modal de felicitaciones */}
+        {/* Modal de felicitaciones - CON AMBAS PROPS */}
         <CongratulationsModal 
           open={gameWon} 
-          onClose={restartGame} 
+          onPlayAgain={restartGame}
+          onClose={resetGame}
           moves={moves} 
         />
       </Box>
