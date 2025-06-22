@@ -1,8 +1,8 @@
 // src/components/JuegaComoKai/GameBoard.tsx
-
 import React from 'react';
 import { Box } from '@mui/material';
 import Card from './Card';
+import AnimatedBox from '../AnimatedBox';
 
 interface GameBoardProps {
   cards?: any[];
@@ -28,16 +28,16 @@ const GameBoard: React.FC<GameBoardProps> = ({
       sx={{
         display: 'grid',
         gridTemplateColumns: { 
-          xs: 'repeat(4, 1fr)', 
-          sm: 'repeat(6, 1fr)', 
-          md: 'repeat(8, 1fr)', 
-          lg: 'repeat(8, 1fr)' 
+          xs: 'repeat(4, 1fr)', // 4x6 en móvil
+          sm: 'repeat(6, 1fr)', // 6x4 en tablet  
+          md: 'repeat(8, 1fr)', // 8x3 en desktop
+          lg: 'repeat(8, 1fr)'  // 8x3 en pantallas grandes
         },
         gap: { xs: 1.2, sm: 1.5, md: 2, lg: 2.5 },
         justifyItems: 'center',
         justifyContent: 'center',
         alignContent: 'center',
-        width: 'fit-content', 
+        width: 'fit-content',
         margin: '0 auto'
       }}
     >

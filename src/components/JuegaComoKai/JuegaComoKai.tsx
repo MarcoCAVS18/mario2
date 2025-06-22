@@ -7,6 +7,7 @@ import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
 import GameBoard from './GameBoard';
 import { useMemoryGame } from '../../hooks/useMemoryGame';
 import CongratulationsModal from '../CongratulationsModal';
+import AnimatedBox from '../AnimatedBox';
 
 const JuegaComoKai: React.FC = () => {
   const navigate = useNavigate();
@@ -55,34 +56,36 @@ const JuegaComoKai: React.FC = () => {
       overflow: 'hidden'
     }}>
       {/* Botón para volver */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: { xs: 15, sm: 25 },
-          left: { xs: 15, sm: 25 },
-          zIndex: 10
-        }}
-      >
+      <AnimatedBox animation="slideInFromLeft" delay={0.1}>
         <Box
-          onClick={() => navigate('/')}
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            cursor: 'pointer',
-            color: '#FFE600',
-            fontFamily: '"ABeeZee", sans-serif',
-            fontSize: { xs: '0.9rem', sm: '1rem' },
-            fontWeight: 700,
-            '&:hover': {
-              color: '#CC2A00'
-            },
-            transition: 'color 0.3s ease'
+            position: 'absolute',
+            top: { xs: 15, sm: 25 },
+            left: { xs: 15, sm: 25 },
+            zIndex: 10
           }}
         >
-          <ArrowBackIcon sx={{ mr: 1, fontSize: { xs: '1.2rem', sm: '1.5rem' } }} />
-          VOLVER
+          <Box
+            onClick={() => navigate('/')}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
+              color: '#FFE600',
+              fontFamily: '"ABeeZee", sans-serif',
+              fontSize: { xs: '0.9rem', sm: '1rem' },
+              fontWeight: 700,
+              '&:hover': {
+                color: '#CC2A00'
+              },
+              transition: 'color 0.3s ease'
+            }}
+          >
+            <ArrowBackIcon sx={{ mr: 1, fontSize: { xs: '1.2rem', sm: '1.5rem' } }} />
+            VOLVER
+          </Box>
         </Box>
-      </Box>
+      </AnimatedBox>
 
       {/* Contenedor principal centrado */}
       <Box
@@ -103,7 +106,7 @@ const JuegaComoKai: React.FC = () => {
             fontFamily: '"ABeeZee", sans-serif',
             fontWeight: 900,
             color: '#FFE600',
-            mb: gameStarted ? 3 : 6,
+            mb: gameStarted ? 1 : 2,
             fontSize: { 
               xs: gameStarted ? '1.8rem' : '2.5rem', 
               sm: gameStarted ? '2.2rem' : '3.5rem', 
@@ -118,7 +121,7 @@ const JuegaComoKai: React.FC = () => {
           JUEGA COMO KAI
         </Typography>
 
-        {/* Subtítulo  */}
+        {/* Subtítulo - solo cuando no está jugando */}
         {!gameStarted && (
           <Typography
             variant="h5"
@@ -162,7 +165,7 @@ const JuegaComoKai: React.FC = () => {
               gameStarted={gameStarted} 
             />
             
-            {/* Estadísticas */}
+            {/* Estadísticas debajo del board */}
             <Box 
               sx={{ 
                 display: 'flex', 

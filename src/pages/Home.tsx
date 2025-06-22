@@ -5,6 +5,7 @@ import { Box, Container, Grid, Paper } from '@mui/material';
 import { Mail as MailIcon, SportsEsports as GamesIcon, Psychology as PsychologyIcon } from '@mui/icons-material';
 import logoImage from '../assets/images/logo/logo.png';
 import ninjagoImage from '../assets/images/others/ninjago.png';
+import AnimatedBox from '../components/AnimatedBox';
 
 const ninjaButtonStyles = {
   py: 2.5,
@@ -39,85 +40,86 @@ const Home: React.FC = () => {
     <Container maxWidth="sm" sx={{ position: 'relative', zIndex: 1 }}>
       <Box sx={{ pt: 2, pb: 2 }}>
         {/* Imagen de Ninjago pequeña arriba */}
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            mb: 2,
-          }}
-        >
-          <img
-            src={ninjagoImage}
-            alt="Ninjago"
-            style={{
-              maxWidth: '300px',
-              height: 'auto',
-              objectFit: 'contain',
-              filter: 'drop-shadow(1px 1px 4px rgba(0,0,0,0.4))'
+        <AnimatedBox animation="slideInFromLeft" delay={0.2}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              mb: 2,
             }}
-          />
-        </Box>
+          >
+            <img
+              src={ninjagoImage}
+              alt="Ninjago"
+              style={{
+                maxWidth: '300px',
+                height: 'auto',
+                objectFit: 'contain',
+                filter: 'drop-shadow(1px 1px 4px rgba(0,0,0,0.4))'
+              }}
+            />
+          </Box>
+        </AnimatedBox>
 
         {/* Logo principal */}
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <img
-            src={logoImage}
-            alt="Logo Mario 4 años"
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-              maxHeight: '300px',
-              objectFit: 'contain',
-              filter: 'drop-shadow(2px 2px 8px rgba(0,0,0,0.3))'
+        <AnimatedBox animation="bounce" delay={0.4}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
-          />
-        </Box>
+          >
+            <img
+              src={logoImage}
+              alt="Logo Mario 4 años"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                maxHeight: '300px',
+                objectFit: 'contain',
+                filter: 'drop-shadow(2px 2px 8px rgba(0,0,0,0.3))'
+              }}
+            />
+          </Box>
+        </AnimatedBox>
       </Box>
 
-      <Paper
-        elevation={0}
-        sx={{
-          backgroundColor: 'rgba(10, 10, 10, 0.7)',
-          backdropFilter: 'blur(8px)',
-          borderRadius: 6,
-          p: 4,
-          boxShadow: '0 0 20px rgba(204, 42, 0, 0.3)',
-        }}
-      >
-        <Grid container spacing={4}>
-          <Grid item xs={12}>
-            <Box
-              onClick={() => navigate('/invitacion')}
-              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', ...ninjaButtonStyles }}
-            >
-              <MailIcon sx={{ mr: 1 }} /> Invitación ninja
-            </Box>
+      <AnimatedBox animation="slideInFromLeft" delay={0.4}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <AnimatedBox animation="slideInFromRight" delay={0.8}>
+                <Box
+                  onClick={() => navigate('/invitacion')}
+                  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', ...ninjaButtonStyles }}
+                >
+                  <MailIcon sx={{ mr: 1 }} /> Invitación ninja
+                </Box>
+              </AnimatedBox>
+            </Grid>
+            <Grid item xs={12}>
+              <AnimatedBox animation="slideInFromLeft" delay={0.4}>
+                <Box
+                  onClick={() => navigate('/juega')}
+                  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', ...ninjaButtonStyles }}
+                >
+                  <GamesIcon sx={{ mr: 1 }} /> Juego ninja
+                </Box>
+              </AnimatedBox>
+            </Grid>
+            <Grid item xs={12}>
+              <AnimatedBox animation="slideInFromLeft" delay={0.4}>
+                <Box
+                  onClick={() => navigate('/curiosidades-ninja')}
+                  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', ...ninjaButtonStyles }}
+                >
+                  <PsychologyIcon sx={{ mr: 1 }} /> Curiosidades ninja
+                </Box>
+              </AnimatedBox>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Box
-              onClick={() => navigate('/juega')}
-              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', ...ninjaButtonStyles }}
-            >
-              <GamesIcon sx={{ mr: 1 }} /> Juego ninja
-            </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Box
-              onClick={() => navigate('/curiosidades-ninja')}
-              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', ...ninjaButtonStyles }}
-            >
-              <PsychologyIcon sx={{ mr: 1 }} /> Curiosidades ninja
-            </Box>
-          </Grid>
-        </Grid>
-      </Paper>
+      </AnimatedBox>
     </Container>
   );
 };
