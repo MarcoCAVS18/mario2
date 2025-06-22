@@ -26,9 +26,13 @@ export const useMemoryGame = () => {
   };
 
   const initializeGame = () => {
-    const initialCards = createInitialCards();
-    // IMPORTANTE: Siempre mezclar las cartas para posiciones aleatorias
-    const shuffledCards = shuffleCards(initialCards);
+    // Crear cartas completamente nuevas con estado inicial
+    const freshCards = createInitialCards().map(card => ({
+      ...card,
+      flipped: false,
+      matched: false
+    }));
+    const shuffledCards = shuffleCards(freshCards);
     setCards(shuffledCards);
     setMoves(0);
     setMatches(0);
@@ -47,17 +51,26 @@ export const useMemoryGame = () => {
   };
 
   const restartGame = () => {
-    // Resetear todo el estado primero
-    setMoves(0);
-    setMatches(0);
+    // Cerrar el modal primero
     setGameWon(false);
-    setFlippedCards([]);
     
-    // Crear y mezclar nuevas cartas inmediatamente
-    const initialCards = createInitialCards();
-    const shuffledCards = shuffleCards(initialCards);
-    setCards(shuffledCards);
-    setGameStarted(true);
+    // Usar setTimeout para asegurar que el modal se cierre antes de reiniciar
+    setTimeout(() => {
+      // Resetear todo el estado
+      setMoves(0);
+      setMatches(0);
+      setFlippedCards([]);
+      
+      // Crear cartas completamente nuevas con estado inicial
+      const freshCards = createInitialCards().map(card => ({
+        ...card,
+        flipped: false,
+        matched: false
+      }));
+      const shuffledCards = shuffleCards(freshCards);
+      setCards(shuffledCards);
+      setGameStarted(true);
+    }, 100);
   };
 
   const handleCardClick = (index: number) => {

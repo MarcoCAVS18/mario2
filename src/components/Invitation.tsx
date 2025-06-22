@@ -10,8 +10,8 @@ const Invitation: React.FC = () => {
   const navigate = useNavigate();
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '5491112345678';
-    const message = 'Hola! Confirmando mi asistencia a la fiesta ninja de Mario. ¡Nos vemos ahí! 🥷🎉';
+    const phoneNumber = '5493413820831';
+    const message = 'Hola Mario! Confirmado, ahí estaré. ¡Modo ninja activado! 🥷🎉';
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
   };
@@ -214,7 +214,7 @@ const Invitation: React.FC = () => {
                 letterSpacing: 1
               }}
             >
-              A LAS 17:00 HS.
+              DE 14:00 HS A 17:00 HS.
             </Typography>
 
             <Typography

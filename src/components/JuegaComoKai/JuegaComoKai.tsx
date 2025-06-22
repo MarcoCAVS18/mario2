@@ -57,36 +57,35 @@ const JuegaComoKai: React.FC = () => {
       pt: { xs: 8, sm: 6 }, // Padding top para dar espacio al botón volver
     }}>
       {/* Botón para volver - Fijo en esquina superior izquierda */}
-      <AnimatedBox animation="slideInFromLeft" delay={0.1}>
+<Box
+        sx={{
+          position: 'fixed',
+          top: 20,
+          left: 20,
+          zIndex: 1000
+        }}
+      >
         <Box
+          onClick={() => navigate('/')}
           sx={{
-            position: 'fixed',
-            top: { xs: 20, sm: 25 },
-            left: { xs: 15, sm: 25 },
-            zIndex: 1000
+            display: 'flex',
+            alignItems: 'center',
+            cursor: 'pointer',
+            color: '#FFE600',
+            fontFamily: '"ABeeZee", sans-serif',
+            fontSize: '1rem',
+            fontWeight: 700,
+            '&:hover': {
+              color: '#CC2A00'
+            },
+            transition: 'color 0.3s ease'
           }}
         >
-          <Box
-            onClick={() => navigate('/')}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              cursor: 'pointer',
-              color: '#FFE600',
-              fontFamily: '"ABeeZee", sans-serif',
-              fontSize: { xs: '0.9rem', sm: '1rem' },
-              fontWeight: 700,
-              '&:hover': {
-                color: '#CC2A00'
-              },
-              transition: 'color 0.3s ease'
-            }}
-          >
-            <ArrowBackIcon sx={{ mr: 1, fontSize: { xs: '1.2rem', sm: '1.5rem' } }} />
-            VOLVER
-          </Box>
+          <ArrowBackIcon sx={{ mr: 1 }} />
+          VOLVER
         </Box>
-      </AnimatedBox>
+      </Box>
+
 
       {/* Contenedor principal centrado */}
       <Box
@@ -108,7 +107,7 @@ const JuegaComoKai: React.FC = () => {
               fontFamily: '"ABeeZee", sans-serif',
               fontWeight: 900,
               color: '#FFE600',
-              mb: gameStarted ? 1 : 2,
+              mb: gameStarted ? 2 : 4,
               fontSize: { 
                 xs: gameStarted ? '1.6rem' : '2.2rem', 
                 sm: gameStarted ? '2rem' : '3rem', 
@@ -234,7 +233,7 @@ const JuegaComoKai: React.FC = () => {
           </AnimatedBox>
         )}
 
-        {/* Modal de felicitaciones - CON AMBAS PROPS */}
+        {/* Modal de felicitaciones */}
         <CongratulationsModal 
           open={gameWon} 
           onPlayAgain={restartGame}
