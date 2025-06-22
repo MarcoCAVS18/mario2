@@ -1,7 +1,7 @@
 // src/pages/Home.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Container, Grid, Paper } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import { Mail as MailIcon, SportsEsports as GamesIcon, Psychology as PsychologyIcon } from '@mui/icons-material';
 import logoImage from '../assets/images/logo/logo.png';
 import ninjagoImage from '../assets/images/others/ninjago.png';

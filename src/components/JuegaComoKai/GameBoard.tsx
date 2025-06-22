@@ -2,7 +2,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import Card from './Card';
-import AnimatedBox from '../AnimatedBox';
 
 interface GameBoardProps {
   cards?: any[];

@@ -1,4 +1,5 @@
 // src/pages/NinjaFacts.tsx
+
 import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
 import { ArrowBack as ArrowBackIcon, NavigateNext as NavigateNextIcon } from '@mui/icons-material';

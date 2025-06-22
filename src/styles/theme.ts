@@ -1,4 +1,5 @@
 // src/styles/theme.ts
+
 import { createTheme } from '@mui/material/styles';
 
 export const customTheme = createTheme({

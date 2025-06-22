@@ -1,7 +1,7 @@
 // src/components/Invitation.tsx
 
 import React from 'react';
-import { Box, Typography, Container, Grid } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { WhatsApp as WhatsAppIcon, ArrowBack as ArrowBackIcon, LocationOn as LocationOnIcon } from '@mui/icons-material';
 import ninjaImage from '../assets/images/others/ninja-invitacion.png';

@@ -54,7 +54,7 @@ const JuegaComoKai: React.FC = () => {
       justifyContent: 'center',
       position: 'relative',
       overflow: 'hidden',
-      pt: { xs: 8, sm: 6 }, // Padding top para dar espacio al botón volver
+      pt: { xs: 8, sm: 6 }, 
     }}>
       {/* Botón para volver - Fijo en esquina superior izquierda */}
             <Box

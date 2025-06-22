@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { initialCardPairs, CardData } from '../data/cardPairs';
 
 const createInitialCards = (): CardData[] => {
-  // Usar las cartas del archivo de datos en lugar de generar manualmente
   return [...initialCardPairs];
 };
 
