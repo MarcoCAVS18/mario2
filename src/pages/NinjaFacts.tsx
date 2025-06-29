@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
-import { ArrowBack as ArrowBackIcon, NavigateNext as NavigateNextIcon } from '@mui/icons-material';
+import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import AnimatedBox from '../components/AnimatedBox';
+import NinjagoButton from '../components/NinjagoButton';
 
 const facts = [
   "Kai es el Ninja del Fuego y el Maestro Elemental del Fuego.",
@@ -25,54 +26,6 @@ const NinjaFacts: React.FC = () => {
 
   const showNextFact = () => {
     setCurrentFactIndex((prevIndex) => (prevIndex + 1) % facts.length);
-  };
-
-  const ninjaButtonStyles = {
-    py: 2,
-    px: 3.5,
-    fontSize: '1rem',
-    fontFamily: '"ABeeZee", sans-serif',
-    textTransform: 'none',
-    borderRadius: 4,
-    fontWeight: 700,
-    letterSpacing: 1,
-    backgroundColor: '#111',
-    color: '#FFE600',
-    border: '2px solid #CC2A00',
-    boxShadow: '0 0 12px #CC2A00',
-    transition: 'all 0.3s ease-in-out',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '50px',
-    '&:hover': {
-      backgroundColor: '#CC2A00',
-      color: '#111',
-      boxShadow: '0 0 16px #E65100',
-      transform: 'translateY(-2px) scale(1.03)',
-    },
-    '&:active': {
-      boxShadow: 'inset 0 0 12px #000',
-      transform: 'translateY(0) scale(0.98)',
-    }
-  };
-
-  const backButtonStyles = {
-    ...ninjaButtonStyles,
-    backgroundColor: 'transparent',
-    border: '2px solid #FFE600',
-    boxShadow: '0 0 8px rgba(255, 230, 0, 0.3)',
-    minHeight: '45px',
-    py: 1.5,
-    px: 3,
-    fontSize: '0.95rem',
-    '&:hover': {
-      backgroundColor: '#FFE600',
-      color: '#111',
-      boxShadow: '0 0 12px #FFE600',
-      transform: 'translateY(-2px)',
-    }
   };
 
   return (
@@ -236,7 +189,7 @@ const NinjaFacts: React.FC = () => {
           </Typography>
         </AnimatedBox>
 
-        {/* Botones */}
+        {/* Botones usando NinjagoButton */}
         <Box 
           sx={{ 
             display: 'flex', 
@@ -245,37 +198,31 @@ const NinjaFacts: React.FC = () => {
             alignItems: 'center'
           }}
         >
-          {/* Botón Siguiente - Más pequeño y texto simplificado */}
+          {/* Botón Siguiente */}
           <AnimatedBox animation="pulse" delay={0.5}>
-            <Box
+            <NinjagoButton
+              buttonType="siguiente"
               onClick={showNextFact}
               sx={{
-                ...ninjaButtonStyles,
                 fontSize: '1.1rem',
                 px: 4,
                 py: 2.5,
-                minHeight: '55px',
-                gap: 1
+                minHeight: '55px'
               }}
-            >
-              <NavigateNextIcon sx={{ fontSize: '1.3rem' }} />
-              SIGUIENTE
-            </Box>
+            />
           </AnimatedBox>
 
           {/* Botón Volver al Inicio */}
           <AnimatedBox animation="fadeInUp" delay={0.7}>
-            <Box
+            <NinjagoButton
+              buttonType="volver"
               onClick={() => navigate('/')}
               sx={{
-                ...backButtonStyles,
                 fontSize: '1rem',
                 px: 3.5,
                 minHeight: '50px'
               }}
-            >
-              VOLVER AL INICIO
-            </Box>
+            />
           </AnimatedBox>
         </Box>
 

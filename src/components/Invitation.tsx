@@ -1,16 +1,13 @@
 // src/components/Invitation.tsx
 
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { 
-  WhatsApp as WhatsAppIcon, 
-  ArrowBack as ArrowBackIcon, 
-  LocationOn as LocationOnIcon,
-  Info as InfoIcon
-} from '@mui/icons-material';
-import ninjaImage from '../assets/images/others/ninja-invitacion.png';
+import { ArrowBack as ArrowBackIcon } from '@mui/icons-material';
+import logoImage from '../assets/images/logo/logo.svg';
+import ninjagoImage from '../assets/images/others/ninjago.png';
 import AnimatedBox from './AnimatedBox';
+import NinjagoButton from './NinjagoButton';
 
 const Invitation: React.FC = () => {
   const navigate = useNavigate();
@@ -26,57 +23,40 @@ const Invitation: React.FC = () => {
     window.open('https://maps.app.goo.gl/bxLdoeRwkaxZyEF57', '_blank');
   };
 
-  const ninjaButtonStyles = {
-    py: 2.5,
-    px: 4,
-    fontSize: '1.1rem',
-    fontFamily: '"ABeeZee", sans-serif',
-    textTransform: 'none',
-    borderRadius: 4,
-    fontWeight: 700,
-    letterSpacing: 1,
-    backgroundColor: '#111',
-    color: '#FFE600',
-    border: '2px solid #CC2A00',
-    boxShadow: '0 0 12px #CC2A00',
-    transition: 'all 0.3s ease-in-out',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '60px',
-    '&:hover': {
-      backgroundColor: '#CC2A00',
-      color: '#111',
-      boxShadow: '0 0 16px #E65100',
-      transform: 'translateY(-2px) scale(1.03)',
-    },
-    '&:active': {
-      boxShadow: 'inset 0 0 12px #000',
-      transform: 'translateY(0) scale(0.98)',
-    }
-  };
-
-  const detailsButtonStyles = {
-    ...ninjaButtonStyles,
-    backgroundColor: '#4CAF50',
-    border: '2px solid #FFE600',
-    boxShadow: '0 0 12px #4CAF50',
-    '&:hover': {
-      backgroundColor: '#FFE600',
-      color: '#111',
-      boxShadow: '0 0 16px #FFC107',
-      transform: 'translateY(-2px) scale(1.03)',
-    },
-    '&:active': {
-      boxShadow: 'inset 0 0 12px #000',
-      transform: 'translateY(0) scale(0.98)',
-    }
-  };
-
   return (
-    <Box sx={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Botón para volver - Fijo en esquina superior izquierda */}
+    <Box sx={{ 
+      position: 'relative', 
+      minHeight: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column',
+      overflow: 'hidden'
+    }}>
+      {/* Fondo ninjago más chico y más visible */}
+      <Box
+        sx={{
+          position: 'fixed',
+          top: '60%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: -1,
+          opacity: 0.15,
+          width: { xs: '90vw', md: '80vw' },
+          height: 'auto',
+          pointerEvents: 'none'
+        }}
+      >
+        <img
+          src={ninjagoImage}
+          alt="Ninjago background"
+          style={{
+            width: '100%',
+            height: 'auto',
+            objectFit: 'contain'
+          }}
+        />
+      </Box>
+
+      {/* Botón volver */}
       <Box
         sx={{
           position: 'fixed',
@@ -108,231 +88,135 @@ const Invitation: React.FC = () => {
         </AnimatedBox>
       </Box>
 
-      {/* Imagen ninja centrada en móviles */}
-      <AnimatedBox animation="slideInFromRight" delay={0.3}>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '45%',
-            left: { xs: '60%', md: 'auto' },
-            right: { xs: 'auto', md: 0 },
-            transform: { 
-              xs: 'translate(-50%, -50%)', 
-              md: 'translateY(-50%)' 
-            },
-            zIndex: 1,
-            width: { xs: '450px', sm: '500px', md: '500px' },
-            height: 'auto',
-            // Animación de flotación continua SIN tocar el transform base
-            '&::after': {
-              content: '""',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              animation: 'ninjaFloat 4s ease-in-out infinite',
-              pointerEvents: 'none'
-            },
-            '& img': {
-              animation: 'ninjaFloat 4s ease-in-out infinite'
-            },
-            '@keyframes ninjaFloat': {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-10px)' }
-            }
-          }}
-        >
+      {/* Logo arriba de todo */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 10,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 1001,
+          width: { xs: '180px', sm: '220px' },
+          height: 'auto',
+        }}
+      >
+        <AnimatedBox animation="fadeInDown" delay={0.2}>
           <img
-            src={ninjaImage}
-            alt="Ninja invitación"
+            src={logoImage}
+            alt="Logo Mario 4 años"
             style={{
               width: '100%',
               height: 'auto',
               objectFit: 'contain',
-              filter: 'drop-shadow(4px 4px 12px rgba(0,0,0,0.5))'
+              filter: 'drop-shadow(3px 3px 10px rgba(0,0,0,0.5))'
             }}
           />
-        </Box>
-      </AnimatedBox>
+        </AnimatedBox>
+      </Box>
 
-      {/* Contenedor superior - Título e invitación */}
-      <Box
-        sx={{
-          flex: '0 0 auto',
-          pt: { xs: 10, md: 12 },
-          pl: { xs: 3, md: 6 },
-          pr: { xs: 3, md: 20 },
-          zIndex: 2
-        }}
-      >
-        <Box sx={{ textAlign: 'left' }}>
-          {/* Título principal */}
-          <AnimatedBox animation="slideInFromLeft" delay={0.5}>
+      {/* Contenido central */}
+      <Container maxWidth="md" sx={{ 
+        position: 'relative', 
+        zIndex: 1, 
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        py: 4
+      }}>
+        <Box sx={{ mt: { xs: 25, md: 30 } }}>
+          <AnimatedBox animation="slideInFromLeft" delay={0.4}>
             <Typography
               variant="h2"
               sx={{
                 fontFamily: '"ABeeZee", sans-serif',
                 fontWeight: 900,
                 color: '#FFE600',
-                mb: 2,
-                fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.8rem' },
+                mb: 1,
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
                 textShadow: '3px 3px 0 #CC2A00, 6px 6px 0 #000',
                 lineHeight: 1,
-                letterSpacing: 2
+                letterSpacing: 2,
+                textAlign: 'center'
               }}
             >
               ¡ESTÁS INVITADO A MI
             </Typography>
           </AnimatedBox>
-          
-          <AnimatedBox animation="slideInFromLeft" delay={0.7}>
+
+          <AnimatedBox animation="slideInFromRight" delay={0.6}>
             <Typography
               variant="h2"
               sx={{
                 fontFamily: '"ABeeZee", sans-serif',
                 fontWeight: 900,
                 color: '#CC2A00',
-                mb: 3,
-                fontSize: { xs: '1.8rem', sm: '2.2rem', md: '2.8rem' },
+                mb: 4,
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
                 textShadow: '3px 3px 0 #FFE600, 6px 6px 0 #000',
                 lineHeight: 1,
-                letterSpacing: 2
+                letterSpacing: 2,
+                textAlign: 'center'
               }}
             >
               FIESTA NINJA!
             </Typography>
           </AnimatedBox>
+        </Box>
 
-          {/* Nombre */}
-          <AnimatedBox animation="bounce" delay={0.9}>
-            <Typography
-              variant="h1"
-              sx={{
-                fontFamily: '"ABeeZee", sans-serif',
-                fontWeight: 900,
-                color: '#FFE600',
-                fontSize: { xs: '4.5rem', sm: '4.5rem', md: '6rem' },
-                textShadow: '4px 4px 0 #CC2A00, 8px 8px 0 #000',
-                lineHeight: 0.8,
-                letterSpacing: 3,
-                // Efecto de brillo periódico
-                animation: 'nameGlow 3s ease-in-out infinite',
-                '@keyframes nameGlow': {
-                  '0%, 100%': { textShadow: '4px 4px 0 #CC2A00, 8px 8px 0 #000' },
-                  '50%': { textShadow: '4px 4px 0 #CC2A00, 8px 8px 0 #000, 0 0 20px #FFE600' }
-                }
-              }}
-            >
-              MARIO
-            </Typography>
+        {/* Info del evento */}
+        <AnimatedBox animation="fadeInUp" delay={0.8}>
+          <Box
+            sx={{
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+              border: '2px solid #FFE600',
+              borderRadius: 3,
+              p: 3,
+              mb: 4,
+              textAlign: 'center',
+              boxShadow: '0 0 20px rgba(255, 230, 0, 0.3)'
+            }}
+          >
+            <Typography sx={{ ...estiloTexto }}>📅 JUEVES, 17 DE JULIO</Typography>
+            <Typography sx={{ ...estiloTexto }}>🕐 DE 14:00 HS A 17:00 HS</Typography>
+            <Typography sx={{ ...estiloTexto }}>🏠 LOS TILOS 1795, ZAVALLA</Typography>
+          </Box>
+        </AnimatedBox>
+
+        {/* Botones */}
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center',
+            gap: 2,
+            width: '100%',
+            maxWidth: '400px'
+          }}
+        >
+          <AnimatedBox animation="slideInFromLeft" delay={1.0}>
+            <NinjagoButton buttonType="confirma" onClick={handleWhatsAppClick} />
+          </AnimatedBox>
+          <AnimatedBox animation="slideInFromLeft" delay={1.2}>
+            <NinjagoButton buttonType="ubicacion" onClick={handleLocationClick} />
+          </AnimatedBox>
+          <AnimatedBox animation="slideInFromLeft" delay={1.4}>
+            <NinjagoButton buttonType="info" onClick={() => navigate('/detalles-mision')} />
           </AnimatedBox>
         </Box>
-      </Box>
-
-      {/* Espacio flexible */}
-      <Box sx={{ flex: 1 }} />
-
-      {/* Contenedor inferior - Detalles y botones */}
-      <Box
-        sx={{
-          flex: '0 0 auto',
-          pb: { xs: 8, md: 10 },
-          pl: { xs: 3, md: 6 },
-          pr: { xs: 3, md: 20 },
-          zIndex: 2
-        }}
-      >
-        <Box sx={{ textAlign: 'left' }}>
-          {/* Detalles del evento */}
-          <Box sx={{ mb: 4 }}>
-            <AnimatedBox animation="fadeInUp" delay={1.1}>
-              <Typography
-                sx={{
-                  fontFamily: '"ABeeZee", sans-serif',
-                  fontWeight: 700,
-                  color: '#fff',
-                  fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.6rem' },
-                  mb: 1,
-                  textShadow: '2px 2px 0 #000',
-                  letterSpacing: 1
-                }}
-              >
-                JUEVES, 17 DE JULIO
-              </Typography>
-            </AnimatedBox>
-
-            <AnimatedBox animation="fadeInUp" delay={1.3}>
-              <Typography
-                sx={{
-                  fontFamily: '"ABeeZee", sans-serif',
-                  fontWeight: 700,
-                  color: '#fff',
-                  fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.6rem' },
-                  mb: 1,
-                  textShadow: '2px 2px 0 #000',
-                  letterSpacing: 1
-                }}
-              >
-                DE 14:00 HS A 17:00 HS.
-              </Typography>
-            </AnimatedBox>
-
-            <AnimatedBox animation="fadeInUp" delay={1.5}>
-              <Typography
-                sx={{
-                  fontFamily: '"ABeeZee", sans-serif',
-                  fontWeight: 700,
-                  color: '#fff',
-                  fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.6rem' },
-                  mb: 3,
-                  textShadow: '2px 2px 0 #000',
-                  letterSpacing: 1
-                }}
-              >
-                EN MI CASA, LOS TILOS 1795, ZAVALLA
-              </Typography>
-            </AnimatedBox>
-          </Box>
-
-          {/* Botones ninja */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 350 }}>
-            <AnimatedBox animation="slideInFromLeft" delay={1.7}>
-              <Box 
-                onClick={handleWhatsAppClick} 
-                sx={{
-                  ...ninjaButtonStyles,
-                  // Animación de pulso para destacar
-                  animation: 'confirmPulse 2s ease-in-out infinite',
-                  '@keyframes confirmPulse': {
-                    '0%, 100%': { boxShadow: '0 0 12px #CC2A00' },
-                    '50%': { boxShadow: '0 0 20px #CC2A00, 0 0 30px rgba(204, 42, 0, 0.5)' }
-                  }
-                }}
-              >
-                <WhatsAppIcon sx={{ mr: 1 }} />
-                Confirma!
-              </Box>
-            </AnimatedBox>
-            
-            <AnimatedBox animation="slideInFromLeft" delay={1.9}>
-              <Box onClick={handleLocationClick} sx={ninjaButtonStyles}>
-                <LocationOnIcon sx={{ mr: 1 }} />
-                Ver ubicación
-              </Box>
-            </AnimatedBox>
-
-            <AnimatedBox animation="slideInFromLeft" delay={2.1}>
-              <Box onClick={() => navigate('/detalles-mision')} sx={detailsButtonStyles}>
-                <InfoIcon sx={{ mr: 1 }} />
-                Más detalles
-              </Box>
-            </AnimatedBox>
-          </Box>
-        </Box>
-      </Box>
+      </Container>
     </Box>
   );
+};
+
+const estiloTexto = {
+  fontFamily: '"ABeeZee", sans-serif',
+  fontWeight: 700,
+  color: '#FFE600',
+  fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
+  mb: 1,
+  textShadow: '2px 2px 0 #000'
 };
 
 export default Invitation;

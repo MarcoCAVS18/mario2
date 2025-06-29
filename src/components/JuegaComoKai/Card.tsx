@@ -3,6 +3,7 @@
 import React from 'react';
 import { Box, Paper } from '@mui/material';
 import cardBackImage from '../../assets/images/cards/back.png';
+import flipSound from '../../assets/sounds/flip.mp3';
 
 interface CardProps {
   card?: any;
@@ -11,6 +12,28 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ card, onClick, gameStarted }) => {
+  // Función para reproducir sonido de voltear carta
+  const playFlipSound = () => {
+    try {
+      const audio = new Audio(flipSound);
+      audio.volume = 0.4; // Volumen moderado
+      audio.play().catch(error => {
+        console.log('No se pudo reproducir el sonido flip:', error);
+      });
+    } catch (error) {
+      console.log('Error al crear el audio flip:', error);
+    }
+  };
+
+  // Manejar click con sonido
+  const handleCardClick = () => {
+    // Solo reproducir sonido si la carta se puede voltear
+    if (onClick && !card?.matched && !card?.flipped && gameStarted) {
+      playFlipSound();
+      onClick();
+    }
+  };
+
   if (!card) {
     return (
       <Paper
@@ -39,11 +62,7 @@ const Card: React.FC<CardProps> = ({ card, onClick, gameStarted }) => {
   return (
     <Paper
       elevation={isFlipped ? 4 : 2}
-      onClick={() => {
-        if (onClick && !isMatched && !isFlipped && gameStarted) {
-          onClick();
-        }
-      }}
+      onClick={handleCardClick}
       sx={{
         width: { xs: '65px', sm: '75px', md: '90px', lg: '100px' },
         height: { xs: '95px', sm: '110px', md: '130px', lg: '145px' },

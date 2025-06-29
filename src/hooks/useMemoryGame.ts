@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { initialCardPairs, CardData } from '../data/cardPairs';
+import correctSound from '../assets/sounds/correct.mp3';
 
 const createInitialCards = (): CardData[] => {
   return [...initialCardPairs];
@@ -14,6 +15,19 @@ export const useMemoryGame = () => {
   const [gameWon, setGameWon] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
+
+  // Función para reproducir sonido de par correcto
+  const playCorrectSound = () => {
+    try {
+      const audio = new Audio(correctSound);
+      audio.volume = 0.5; // Volumen medio-alto para celebrar
+      audio.play().catch(error => {
+        console.log('No se pudo reproducir el sonido correct:', error);
+      });
+    } catch (error) {
+      console.log('Error al crear el audio correct:', error);
+    }
+  };
 
   const shuffleCards = (array: CardData[]): CardData[] => {
     const shuffled = [...array];
@@ -99,6 +113,9 @@ export const useMemoryGame = () => {
 
       // Comparar las imágenes para ver si son el mismo par
       if (firstCard.image === secondCard.image) {
+        // ¡PAR CORRECTO! Reproducir sonido
+        playCorrectSound();
+        
         setTimeout(() => {
           const matchedCards = [...newCards];
           matchedCards[firstIndex].matched = true;
