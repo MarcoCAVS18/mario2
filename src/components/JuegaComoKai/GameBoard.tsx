@@ -27,10 +27,10 @@ const GameBoard: React.FC<GameBoardProps> = ({
       sx={{
         display: 'grid',
         gridTemplateColumns: { 
-          xs: 'repeat(4, 1fr)', // 4x6 en móvil
-          sm: 'repeat(6, 1fr)', // 6x4 en tablet  
-          md: 'repeat(8, 1fr)', // 8x3 en desktop
-          lg: 'repeat(8, 1fr)'  // 8x3 en pantallas grandes
+          xs: 'repeat(4, 1fr)', // 4x4 en móvil (cuadrado perfecto)
+          sm: 'repeat(4, 1fr)', // 4x4 en tablet también
+          md: 'repeat(8, 1fr)', // 8x2 en desktop (más horizontal)
+          lg: 'repeat(8, 1fr)'  // 8x2 en pantallas grandes
         },
         gap: { xs: 1.2, sm: 1.5, md: 2, lg: 2.5 },
         justifyItems: 'center',

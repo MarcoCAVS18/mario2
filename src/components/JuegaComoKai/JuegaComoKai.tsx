@@ -8,41 +8,12 @@ import GameBoard from './GameBoard';
 import { useMemoryGame } from '../../hooks/useMemoryGame';
 import CongratulationsModal from '../CongratulationsModal';
 import AnimatedBox from '../AnimatedBox';
+import NinjagoButton from '../NinjagoButton';
+import ninjagoImage from '../../assets/images/others/ninjago.png';
 
 const JuegaComoKai: React.FC = () => {
   const navigate = useNavigate();
   const { cards, moves, matches, gameWon, handleCardClick, resetGame, restartGame, gameStarted } = useMemoryGame();
-
-  const ninjaButtonStyles = {
-    py: 2,
-    px: 3.5,
-    fontSize: '1rem',
-    fontFamily: '"ABeeZee", sans-serif',
-    textTransform: 'none',
-    borderRadius: 4,
-    fontWeight: 700,
-    letterSpacing: 1,
-    backgroundColor: '#111',
-    color: '#FFE600',
-    border: '2px solid #CC2A00',
-    boxShadow: '0 0 12px #CC2A00',
-    transition: 'all 0.3s ease-in-out',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '50px',
-    '&:hover': {
-      backgroundColor: '#CC2A00',
-      color: '#111',
-      boxShadow: '0 0 16px #E65100',
-      transform: 'translateY(-2px) scale(1.03)',
-    },
-    '&:active': {
-      boxShadow: 'inset 0 0 12px #000',
-      transform: 'translateY(0) scale(0.98)',
-    }
-  };
 
   return (
     <Box sx={{ 
@@ -54,10 +25,10 @@ const JuegaComoKai: React.FC = () => {
       justifyContent: 'center',
       position: 'relative',
       overflow: 'hidden',
-      pt: { xs: 8, sm: 6 }, // Padding top para dar espacio al botón volver
+      pt: { xs: 8, sm: 6 },
     }}>
-      {/* Botón para volver - Fijo en esquina superior izquierda */}
-<Box
+      {/* Botón para volver */}
+      <Box
         sx={{
           position: 'fixed',
           top: 20,
@@ -86,7 +57,6 @@ const JuegaComoKai: React.FC = () => {
         </Box>
       </Box>
 
-
       {/* Contenedor principal centrado */}
       <Box
         sx={{
@@ -99,7 +69,33 @@ const JuegaComoKai: React.FC = () => {
           px: { xs: 1, sm: 2 }
         }}
       >
-        {/* Título principal - Reducido cuando está jugando */}
+        {/* Imagen de Ninjago arriba - solo cuando no está jugando */}
+        {!gameStarted && (
+          <AnimatedBox animation="slideInFromLeft" delay={0.1}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                mb: 2,
+              }}
+            >
+              <img
+                src={ninjagoImage}
+                alt="Ninjago"
+                style={{
+                  maxWidth: '150px',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(1px 1px 4px rgba(0,0,0,0.4))'
+                }}
+              />
+            </Box>
+          </AnimatedBox>
+        )}
+
+        {/* Título principal */}
+        
         <AnimatedBox animation="fadeInDown" delay={0.3}>
           <Typography
             variant="h2"
@@ -144,21 +140,18 @@ const JuegaComoKai: React.FC = () => {
           </AnimatedBox>
         )}
 
-        {/* Botón de inicio - Más pequeño */}
+        {/* Botón de inicio con SVG */}
         {!gameStarted && (
           <AnimatedBox animation="pulse" delay={0.7}>
-            <Box
+            <NinjagoButton
+              buttonType="comenzar"
               onClick={() => handleCardClick(-1)}
               sx={{
-                ...ninjaButtonStyles,
-                fontSize: '1.1rem',
-                px: 4,
-                py: 2.5,
-                minHeight: '60px'
+                display: 'block',
+                margin: '0 auto'
               }}
             >
-              ¡COMENZAR MISIÓN!
-            </Box>
+            </NinjagoButton>
           </AnimatedBox>
         )}
 
@@ -226,7 +219,7 @@ const JuegaComoKai: React.FC = () => {
                     letterSpacing: 0.5
                   }}
                 >
-                  Pares: {matches} / 12
+                  Pares: {matches} / 8
                 </Typography>
               </Box>
             </Box>

@@ -42,7 +42,7 @@ const GameStats: React.FC<GameStatsProps> = ({ moves, matches }) => {
           fontSize: { xs: '0.9rem', sm: '1rem' }
         }}
       >
-        Pares: {matches} / 12
+        Pares: {matches} / 8
       </Typography>
     </Box>
   );
