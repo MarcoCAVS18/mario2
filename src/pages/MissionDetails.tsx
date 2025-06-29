@@ -25,7 +25,13 @@ const MissionDetails: React.FC = () => {
   };
 
   return (
-    <Box sx={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <Box sx={{ 
+      position: 'relative', 
+      minHeight: '100vh', 
+      display: 'flex', 
+      flexDirection: 'column',
+      overflowY: 'auto' // SCROLL HABILITADO SOLO AQUÍ
+    }}>
       {/* Botón para volver */}
       <Box
         sx={{
@@ -211,7 +217,6 @@ const MissionDetails: React.FC = () => {
                 >
                   • Ganas de jugar y divertirse<br/>
                   • Actitud ninja positiva<br/>
-                  • Ropa cómoda para la aventura<br/>
                   • ¡Muchas ganas de celebrar!
                 </Typography>
               </Box>
@@ -257,61 +262,6 @@ const MissionDetails: React.FC = () => {
             </Box>
           </AnimatedBox>
 
-          {/* Contacto */}
-          <AnimatedBox animation="slideInFromLeft" delay={1.2}>
-            <Box
-              onClick={handlePhoneClick}
-              sx={{
-                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                border: '2px solid #FF9800',
-                borderRadius: 3,
-                p: 3,
-                mb: 4,
-                display: 'flex',
-                alignItems: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 152, 0, 0.1)',
-                  transform: 'translateY(-2px)'
-                }
-              }}
-            >
-              <PhoneIcon sx={{ color: '#FF9800', fontSize: '2rem', mr: 2 }} />
-              <Box>
-                <Typography
-                  sx={{
-                    fontFamily: '"ABeeZee", sans-serif',
-                    fontWeight: 700,
-                    color: '#FF9800',
-                    fontSize: '1.2rem',
-                    mb: 0.5
-                  }}
-                >
-                  CONTACTO NINJA
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: '"ABeeZee", sans-serif',
-                    color: '#fff',
-                    fontSize: '1rem'
-                  }}
-                >
-                  ¿Dudas? ¡Llámanos!
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: '"ABeeZee", sans-serif',
-                    color: '#FF9800',
-                    fontSize: '0.9rem',
-                    fontStyle: 'italic'
-                  }}
-                >
-                  Toca para llamar
-                </Typography>
-              </Box>
-            </Box>
-          </AnimatedBox>
 
           {/* Mensaje final */}
           <AnimatedBox animation="fadeInUp" delay={1.4}>

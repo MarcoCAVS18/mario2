@@ -194,7 +194,6 @@ const NinjaFacts: React.FC = () => {
           sx={{ 
             display: 'flex', 
             flexDirection: { xs: 'column', sm: 'row' },
-            gap: 3,
             alignItems: 'center'
           }}
         >
