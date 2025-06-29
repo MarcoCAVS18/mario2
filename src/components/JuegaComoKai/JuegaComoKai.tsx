@@ -84,7 +84,7 @@ const JuegaComoKai: React.FC = () => {
                 src={ninjagoImage}
                 alt="Ninjago"
                 style={{
-                  maxWidth: '150px',
+                  maxWidth: '250px',
                   height: 'auto',
                   objectFit: 'contain',
                   filter: 'drop-shadow(1px 1px 4px rgba(0,0,0,0.4))'

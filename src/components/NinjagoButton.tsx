@@ -2,13 +2,9 @@
 
 import React from 'react';
 import { Box, SxProps } from '@mui/material';
-import invitacionSvg from '../assets/images/buttons/invitacion.svg';
-import juegoNinjaSvg from '../assets/images/buttons/juegoninja.svg';
-import curiosidadesSvg from '../assets/images/buttons/curiosidades.svg';
-import comenzarSvg from '../assets/images/buttons/comenzar.svg';
 
 interface NinjagoButtonProps {
-  children: React.ReactNode;
+  children?: React.ReactNode; // Hacer children opcional
   onClick?: () => void;
   sx?: SxProps;
   disabled?: boolean;
@@ -22,20 +18,53 @@ const NinjagoButton: React.FC<NinjagoButtonProps> = ({
   disabled = false,
   buttonType
 }) => {
-  // Seleccionar el SVG según el tipo de botón
-  const getSvgSource = () => {
+  // Función para obtener el texto por defecto según el tipo
+  const getDefaultText = () => {
     switch (buttonType) {
       case 'invitacion':
-        return invitacionSvg;
+        return 'VER INVITACIÓN';
       case 'juegoninja':
-        return juegoNinjaSvg;
+        return 'JUEGA COMO KAI';
       case 'curiosidades':
-        return curiosidadesSvg;
+        return 'CURIOSIDADES NINJA';
       case 'comenzar':
-        return comenzarSvg;
+        return 'COMENZAR MISIÓN';
       default:
-        return invitacionSvg;
+        return 'BOTÓN NINJA';
     }
+  };
+
+  // Función para generar SVG simple como fallback
+  const generateFallbackSVG = () => {
+    const colors = {
+      invitacion: { bg: '#4CAF50', border: '#FFE600' },
+      juegoninja: { bg: '#CC2A00', border: '#FFE600' },
+      curiosidades: { bg: '#9C27B0', border: '#FFE600' },
+      comenzar: { bg: '#FF9800', border: '#FFE600' }
+    };
+
+    const color = colors[buttonType];
+    
+    return `data:image/svg+xml,${encodeURIComponent(`
+      <svg width="400" height="80" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:${color.bg};stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#000;stop-opacity:0.8" />
+          </linearGradient>
+        </defs>
+        <rect x="5" y="5" width="390" height="70" rx="10" ry="10" 
+              fill="url(#grad)" 
+              stroke="${color.border}" 
+              stroke-width="3"
+              filter="drop-shadow(2px 4px 8px rgba(0,0,0,0.4))" />
+        <rect x="10" y="10" width="380" height="60" rx="8" ry="8" 
+              fill="none" 
+              stroke="${color.border}" 
+              stroke-width="1"
+              opacity="0.5" />
+      </svg>
+    `)}`;
   };
 
   return (
@@ -47,13 +76,12 @@ const NinjagoButton: React.FC<NinjagoButtonProps> = ({
         userSelect: 'none',
         transition: 'all 0.3s ease-in-out',
         opacity: disabled ? 0.6 : 1,
-        // HACER EL CONTENEDOR EXACTAMENTE IGUAL AL SVG
         display: 'inline-block',
         width: 'fit-content',
         height: 'fit-content',
         margin: 0,
         padding: 0,
-        lineHeight: 0, // Elimina espacio extra de texto
+        lineHeight: 0,
         '&:hover': disabled ? {} : {
           transform: 'translateY(-2px) scale(1.03)',
           filter: 'brightness(1.1) drop-shadow(0 4px 12px rgba(255,230,0,0.4))',
@@ -65,15 +93,15 @@ const NinjagoButton: React.FC<NinjagoButtonProps> = ({
         ...sx
       }}
     >
-      {/* SVG con tamaño controlado pero sin forzar contenedor */}
+      {/* SVG generado como fallback */}
       <Box
         component="img"
-        src={getSvgSource()}
+        src={generateFallbackSVG()}
         alt={`${buttonType} Button`}
         sx={{
           display: 'block',
-          width: { xs: '300px', sm: '350px', md: '400px' }, // Tamaño responsivo del SVG
-          height: 'auto', // Altura automática para mantener proporción
+          width: { xs: '300px', sm: '350px', md: '400px' },
+          height: 'auto',
           margin: 0,
           padding: 0,
           verticalAlign: 'top',
@@ -106,7 +134,7 @@ const NinjagoButton: React.FC<NinjagoButtonProps> = ({
           gap: 1
         }}
       >
-        {children}
+        {children || getDefaultText()}
       </Box>
     </Box>
   );

@@ -1,11 +1,14 @@
 // src/pages/MissionDetails.tsx
 
 import React from 'react';
-import { Box, Typography, Button, Paper } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { 
   ArrowBack as ArrowBackIcon,
-  Map as MapIcon,
-  QrCode as QrCodeIcon 
+  LocationOn as LocationOnIcon,
+  AccessTime as TimeIcon,
+  Cake as CakeIcon,
+  DirectionsCar as ParkingIcon,
+  Phone as PhoneIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import AnimatedBox from '../components/AnimatedBox';
@@ -13,193 +16,330 @@ import AnimatedBox from '../components/AnimatedBox';
 const MissionDetails: React.FC = () => {
   const navigate = useNavigate();
 
-  return (
-    <Box sx={{ maxWidth: '600px', width: '100%', px: 2 }}>
-      <AnimatedBox animation="slideInFromLeft" delay={0.1}>
-        <Button
-          startIcon={<ArrowBackIcon />}
-          onClick={() => navigate('/invitacion')}
-          sx={{
-            color: '#FFD700',
-            mb: 3,
-            fontSize: '1.1rem',
-            fontFamily: '"ABeeZee", sans-serif'
-          }}
-        >
-          Volver a la Invitación
-        </Button>
-      </AnimatedBox>
+  const handleLocationClick = () => {
+    window.open('https://maps.app.goo.gl/bxLdoeRwkaxZyEF57', '_blank');
+  };
 
-      <Paper
-        elevation={6}
+  const handlePhoneClick = () => {
+    window.open('tel:+5493413820831', '_self');
+  };
+
+  return (
+    <Box sx={{ position: 'relative', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      {/* Botón para volver */}
+      <Box
         sx={{
-          background: 'rgba(255, 255, 255, 0.95)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: 4,
-          boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
-          p: 4,
-          textAlign: 'center',
+          position: 'fixed',
+          top: 20,
+          left: 20,
+          zIndex: 1000
         }}
       >
-        <AnimatedBox animation="bounce" delay={0.2}>
-          <MapIcon 
-            sx={{ 
-              fontSize: '3rem', 
-              color: '#D32F2F', 
-              mb: 2 
-            }} 
-          />
-        </AnimatedBox>
+        <Box
+          onClick={() => navigate('/invitacion')}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            cursor: 'pointer',
+            color: '#FFE600',
+            fontFamily: '"ABeeZee", sans-serif',
+            fontSize: '1rem',
+            fontWeight: 700,
+            '&:hover': {
+              color: '#CC2A00'
+            },
+            transition: 'color 0.3s ease'
+          }}
+        >
+          <ArrowBackIcon sx={{ mr: 1 }} />
+          VOLVER
+        </Box>
+      </Box>
 
-        <AnimatedBox animation="fadeInDown" delay={0.4}>
-          <Typography 
-            variant="h4" 
-            component="h2" 
-            gutterBottom 
-            sx={{ 
-              color: '#D32F2F', 
-              fontWeight: 'bold',
+      {/* Contenido principal */}
+      <Box sx={{ flex: 1, pt: 8, px: 3 }}>
+        <AnimatedBox animation="fadeInDown" delay={0.2}>
+          <Typography
+            variant="h2"
+            sx={{
               fontFamily: '"ABeeZee", sans-serif',
-              mb: 3
+              fontWeight: 900,
+              color: '#FFE600',
+              mb: 2,
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+              textShadow: '3px 3px 0 #CC2A00, 6px 6px 0 #000',
+              lineHeight: 1,
+              letterSpacing: 2,
+              textAlign: 'center'
             }}
           >
-            Detalles de la Misión Ninja
+            DETALLES DE LA MISIÓN
           </Typography>
         </AnimatedBox>
-        
-        <AnimatedBox animation="fadeInUp" delay={0.6}>
-          <Typography 
-            variant="body1" 
-            paragraph
-            sx={{
-              color: '#555',
-              fontFamily: '"ABeeZee", sans-serif',
-              fontSize: '1.1rem',
-              mb: 3
-            }}
-          >
-            La batalla contra el mal se librará en el dojo secreto...
-          </Typography>
-        </AnimatedBox>
 
-        <AnimatedBox animation="slideInFromLeft" delay={0.8}>
-          <Box
-            sx={{
-              p: 3,
-              bgcolor: '#F5F5F5',
-              borderRadius: 3,
-              border: '2px solid #4CAF50',
-              mb: 4
-            }}
-          >
-            <Typography 
-              variant="h6" 
-              sx={{ 
-                fontWeight: 'bold', 
-                color: '#4CAF50',
-                fontFamily: '"ABeeZee", sans-serif',
-                mb: 1
-              }}
-            >
-              Ubicación Secreta del Dojo:
-            </Typography>
-            <Typography 
-              variant="body1"
-              sx={{
-                color: '#333',
-                fontFamily: '"ABeeZee", sans-serif'
-              }}
-            >
-              Calle de los Ninjas 123, Barrio Spinjitzu
-            </Typography>
-          </Box>
-        </AnimatedBox>
-        
-        <AnimatedBox animation="pulse" delay={1.0}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              mb: 3
-            }}
-          >
-            <QrCodeIcon sx={{ fontSize: '2rem', color: '#666', mb: 1 }} />
+        {/* Información práctica */}
+        <Box sx={{ maxWidth: '600px', mx: 'auto', mt: 4 }}>
+          
+          {/* Horario */}
+          <AnimatedBox animation="slideInFromLeft" delay={0.4}>
             <Box
               sx={{
-                width: 200,
-                height: 200,
-                bgcolor: '#F0F0F0',
-                border: '2px dashed #999',
-                borderRadius: 2,
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                border: '2px solid #FFE600',
+                borderRadius: 3,
+                p: 3,
+                mb: 3,
+                display: 'flex',
+                alignItems: 'center'
+              }}
+            >
+              <TimeIcon sx={{ color: '#FFE600', fontSize: '2rem', mr: 2 }} />
+              <Box>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    fontWeight: 700,
+                    color: '#FFE600',
+                    fontSize: '1.2rem',
+                    mb: 0.5
+                  }}
+                >
+                  HORARIO NINJA
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    color: '#fff',
+                    fontSize: '1rem'
+                  }}
+                >
+                  Jueves 17 de Julio • 14:00 a 17:00 hs
+                </Typography>
+              </Box>
+            </Box>
+          </AnimatedBox>
+
+          {/* Ubicación */}
+          <AnimatedBox animation="slideInFromRight" delay={0.6}>
+            <Box
+              onClick={handleLocationClick}
+              sx={{
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                border: '2px solid #4CAF50',
+                borderRadius: 3,
+                p: 3,
+                mb: 3,
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                mb: 2
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                  transform: 'translateY(-2px)'
+                }
               }}
             >
-              <Typography 
-                variant="body2" 
-                sx={{ 
-                  color: '#666',
+              <LocationOnIcon sx={{ color: '#4CAF50', fontSize: '2rem', mr: 2 }} />
+              <Box>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    fontWeight: 700,
+                    color: '#4CAF50',
+                    fontSize: '1.2rem',
+                    mb: 0.5
+                  }}
+                >
+                  UBICACIÓN DEL DOJO
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    color: '#fff',
+                    fontSize: '1rem'
+                  }}
+                >
+                  Los Tilos 1795, Zavalla
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    color: '#4CAF50',
+                    fontSize: '0.9rem',
+                    fontStyle: 'italic'
+                  }}
+                >
+                  Toca para ver en el mapa
+                </Typography>
+              </Box>
+            </Box>
+          </AnimatedBox>
+
+          {/* Qué llevar */}
+          <AnimatedBox animation="slideInFromLeft" delay={0.8}>
+            <Box
+              sx={{
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                border: '2px solid #CC2A00',
+                borderRadius: 3,
+                p: 3,
+                mb: 3,
+                display: 'flex',
+                alignItems: 'flex-start'
+              }}
+            >
+              <CakeIcon sx={{ color: '#CC2A00', fontSize: '2rem', mr: 2, mt: 0.5 }} />
+              <Box>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    fontWeight: 700,
+                    color: '#CC2A00',
+                    fontSize: '1.2rem',
+                    mb: 1
+                  }}
+                >
+                  EQUIPO NINJA REQUERIDO
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    color: '#fff',
+                    fontSize: '1rem',
+                    mb: 1
+                  }}
+                >
+                  • Ganas de jugar y divertirse<br/>
+                  • Actitud ninja positiva<br/>
+                  • Ropa cómoda para la aventura<br/>
+                  • ¡Muchas ganas de celebrar!
+                </Typography>
+              </Box>
+            </Box>
+          </AnimatedBox>
+
+          {/* Estacionamiento */}
+          <AnimatedBox animation="slideInFromRight" delay={1.0}>
+            <Box
+              sx={{
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                border: '2px solid #9C27B0',
+                borderRadius: 3,
+                p: 3,
+                mb: 3,
+                display: 'flex',
+                alignItems: 'center'
+              }}
+            >
+              <ParkingIcon sx={{ color: '#9C27B0', fontSize: '2rem', mr: 2 }} />
+              <Box>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    fontWeight: 700,
+                    color: '#9C27B0',
+                    fontSize: '1.2rem',
+                    mb: 0.5
+                  }}
+                >
+                  ESTACIONAMIENTO
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    color: '#fff',
+                    fontSize: '1rem'
+                  }}
+                >
+                  Amplio espacio disponible en casa
+                </Typography>
+              </Box>
+            </Box>
+          </AnimatedBox>
+
+          {/* Contacto */}
+          <AnimatedBox animation="slideInFromLeft" delay={1.2}>
+            <Box
+              onClick={handlePhoneClick}
+              sx={{
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                border: '2px solid #FF9800',
+                borderRadius: 3,
+                p: 3,
+                mb: 4,
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                  transform: 'translateY(-2px)'
+                }
+              }}
+            >
+              <PhoneIcon sx={{ color: '#FF9800', fontSize: '2rem', mr: 2 }} />
+              <Box>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    fontWeight: 700,
+                    color: '#FF9800',
+                    fontSize: '1.2rem',
+                    mb: 0.5
+                  }}
+                >
+                  CONTACTO NINJA
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    color: '#fff',
+                    fontSize: '1rem'
+                  }}
+                >
+                  ¿Dudas? ¡Llámanos!
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: '"ABeeZee", sans-serif',
+                    color: '#FF9800',
+                    fontSize: '0.9rem',
+                    fontStyle: 'italic'
+                  }}
+                >
+                  Toca para llamar
+                </Typography>
+              </Box>
+            </Box>
+          </AnimatedBox>
+
+          {/* Mensaje final */}
+          <AnimatedBox animation="fadeInUp" delay={1.4}>
+            <Box
+              sx={{
+                textAlign: 'center',
+                backgroundColor: 'rgba(255, 230, 0, 0.1)',
+                border: '2px solid #FFE600',
+                borderRadius: 3,
+                p: 3,
+                mb: 4
+              }}
+            >
+              <Typography
+                sx={{
                   fontFamily: '"ABeeZee", sans-serif',
-                  textAlign: 'center'
+                  fontWeight: 700,
+                  color: '#FFE600',
+                  fontSize: { xs: '1.1rem', sm: '1.3rem' },
+                  textShadow: '2px 2px 0 #000'
                 }}
               >
-                Código QR<br/>de ubicación
+                🥷 ¡La aventura ninja te espera! 🥷
               </Typography>
             </Box>
-            <Typography 
-              variant="body2" 
-              sx={{
-                color: '#666',
-                fontFamily: '"ABeeZee", sans-serif',
-                fontStyle: 'italic'
-              }}
-            >
-              ¡Escanea para la ubicación exacta!
-            </Typography>
-          </Box>
-        </AnimatedBox>
-        
-        <AnimatedBox animation="fadeInUp" delay={1.2}>
-          <Typography 
-            variant="body1" 
-            paragraph
-            sx={{
-              color: '#555',
-              fontFamily: '"ABeeZee", sans-serif',
-              mb: 4,
-              fontWeight: 'bold'
-            }}
-          >
-            Prepara tus habilidades ninja. Mario y Ninjago cuentan contigo!
-          </Typography>
-        </AnimatedBox>
-
-        <AnimatedBox animation="fadeInUp" delay={1.4}>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              px: 4,
-              py: 1.5,
-              fontSize: '1.1rem',
-              fontFamily: '"ABeeZee", sans-serif',
-              background: 'linear-gradient(45deg, #4CAF50 30%, #81C784 90%)',
-              '&:hover': {
-                background: 'linear-gradient(45deg, #388E3C 30%, #4CAF50 90%)',
-                transform: 'translateY(-2px)',
-                boxShadow: '0 8px 16px rgba(76, 175, 80, 0.3)'
-              },
-              transition: 'all 0.3s ease'
-            }}
-            onClick={() => navigate('/invitacion')}
-          >
-            Volver a la Invitación
-          </Button>
-        </AnimatedBox>
-      </Paper>
+          </AnimatedBox>
+        </Box>
+      </Box>
     </Box>
   );
 };
