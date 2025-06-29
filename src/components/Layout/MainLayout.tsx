@@ -22,8 +22,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#000', // Fondo negro por defecto
-        overflow: 'hidden',
+        backgroundColor: '#000', 
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        scrollBehavior: 'smooth',
+
       }}
     >
       {/* Contenedor con las nuevas proporciones */}
@@ -70,15 +73,15 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         }}
       >
         {/* Contenedor de contenido */}
-        <Box 
-          sx={{ 
-            position: 'relative', 
-            zIndex: 1, 
-            width: '100%', 
+        <Box
+          sx={{
+            position: 'relative',
+            zIndex: 1,
+            width: '100%',
             height: '100%',
-            display: 'flex', 
-            flexDirection: 'column', 
-            alignItems: 'center', 
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             justifyContent: 'center',
             userSelect: 'none',
             p: { xs: 2, sm: 3, md: 4 }, // Padding responsivo
