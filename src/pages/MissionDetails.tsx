@@ -8,7 +8,6 @@ import {
   AccessTime as TimeIcon,
   Cake as CakeIcon,
   DirectionsCar as ParkingIcon,
-  Phone as PhoneIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import AnimatedBox from '../components/AnimatedBox';
@@ -18,10 +17,6 @@ const MissionDetails: React.FC = () => {
 
   const handleLocationClick = () => {
     window.open('https://maps.app.goo.gl/bxLdoeRwkaxZyEF57', '_blank');
-  };
-
-  const handlePhoneClick = () => {
-    window.open('tel:+5493413820831', '_self');
   };
 
   return (
